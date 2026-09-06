@@ -1,0 +1,20 @@
+# Nexus-Controller Configuration
+general:
+  log_level: "info"
+
+grpc:
+  listen_addr: ":9999"
+  heartbeat_timeout: 15              # seconds, no heartbeat -> offline
+  check_interval: 5                  # seconds, node status check interval
+  auth_token: ""
+
+store:
+  db_path: "nexus_center.db"
+  batch_interval_ms: 1000
+  batch_size: 100
+  metrics_retain_days: 7
+  logs_retain_days: 30
+  cleanup_hour: 2                    # 2:00 AM daily cleanup
+
+api:
+  listen_addr: ":8080"

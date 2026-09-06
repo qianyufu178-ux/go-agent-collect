@@ -1,0 +1,52 @@
+# Nexus-Edge Configuration
+general:
+  node_id: "edge-node-1"
+  node_name: "Nexus Edge Node"
+  log_level: "info"
+
+proxy:
+  listen_addr: ":80"
+  upstream_addr: ":9090"
+  upstream_timeout: 10
+  max_concurrency: 1024
+
+limiter:
+  algorithm: "token_bucket"          # token_bucket | sliding_window | max_concurrency
+  global_max_qps: 1000
+  token_bucket_rate: 1000
+  token_bucket_burst: 2000
+  window_size_ms: 1000
+  window_max_requests: 1000
+  max_concurrency: 500
+  ip_whitelist: []
+  header_whitelist: []
+  blocked_status_code: 429
+  blocked_response: '{"code":429,"msg":"系统繁忙，请稍后再试"}'
+  overload_cpu_threshold: 80.0
+  overload_mem_threshold: 85.0
+  url_rules: {}
+
+collector:
+  metrics_interval: 10               # seconds
+  log_paths: []
+  log_filter_mode: "include"         # include | exclude
+  log_keywords: []
+  log_max_line_size: 10240           # bytes
+  log_poll_interval: 1000            # milliseconds
+  disk_mount_point: "/"
+
+cache:
+  storage_type: "sqlite"             # sqlite | file
+  max_size_mb: 100
+  resend_rate: 50                    # messages per second
+  reconn_interval: 3                 # seconds
+
+grpc:
+  controller_addr: "127.0.0.1:9999"
+  heartbeat_sec: 5
+  timeout_sec: 10
+  max_retries: 3
+  auth_token: ""
+
+api:
+  listen_addr: ":8081"

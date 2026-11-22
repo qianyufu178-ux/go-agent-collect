@@ -1,0 +1,35 @@
+# Go
+*.exe
+*.test
+*.out
+/bin/
+*/bin/
+
+# C++ / CMake
+/build/
+cpp/build/
+CMakeCache.txt
+CMakeFiles/
+*.a
+*.o
+*.obj
+*.lib
+*.dll
+*.pdb
+*.so
+
+# proto 生成物（make proto 的输出）
+proto/gen/
+
+# 运行期数据
+*.log
+*.db
+*.db-shm
+*.db-wal
+*.mp4
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

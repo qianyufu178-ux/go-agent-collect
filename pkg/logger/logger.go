@@ -36,7 +36,6 @@ type Logger struct {
 }
 
 var defaultLogger *Logger
-var once sync.Once
 
 func init() {
 	SetDefault(New(INFO, os.Stdout))
@@ -52,7 +51,6 @@ func New(level Level, out io.Writer) *Logger {
 
 // SetDefault sets the global default logger.
 func SetDefault(l *Logger) {
-	once = func() { defaultLogger = l }()
 	defaultLogger = l
 }
 

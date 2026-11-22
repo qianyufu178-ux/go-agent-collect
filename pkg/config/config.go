@@ -9,21 +9,21 @@ import (
 
 // EdgeConfig represents the configuration for Nexus-Edge.
 type EdgeConfig struct {
-	General GeneralConfig `yaml:"general"`
-	Proxy   ProxyConfig   `yaml:"proxy"`
-	Limiter LimiterConfig `yaml:"limiter"`
+	General GeneralConfig   `yaml:"general"`
+	Proxy   ProxyConfig     `yaml:"proxy"`
+	Limiter LimiterConfig   `yaml:"limiter"`
 	Collect CollectorConfig `yaml:"collector"`
-	Cache   CacheConfig   `yaml:"cache"`
-	GRPC    GRPCConfig    `yaml:"grpc"`
-	API     APIConfig     `yaml:"api"`
+	Cache   CacheConfig     `yaml:"cache"`
+	GRPC    GRPCConfig      `yaml:"grpc"`
+	API     APIConfig       `yaml:"api"`
 }
 
 // GeneralConfig holds general settings.
 type GeneralConfig struct {
-	NodeID      string `yaml:"node_id"`
-	NodeName    string `yaml:"node_name"`
-	LogLevel    string `yaml:"log_level"`
-	ConfigFile  string `yaml:"-"`
+	NodeID     string `yaml:"node_id"`
+	NodeName   string `yaml:"node_name"`
+	LogLevel   string `yaml:"log_level"`
+	ConfigFile string `yaml:"-"`
 }
 
 // ProxyConfig holds HTTP reverse proxy settings.
@@ -36,20 +36,20 @@ type ProxyConfig struct {
 
 // LimiterConfig holds rate limiting settings.
 type LimiterConfig struct {
-	Algorithm          string             `yaml:"algorithm"`
-	GlobalMaxQPS       int                `yaml:"global_max_qps"`
-	TokenBucketRate    float64            `yaml:"token_bucket_rate"`
-	TokenBucketBurst   float64            `yaml:"token_bucket_burst"`
-	WindowSizeMs       int64              `yaml:"window_size_ms"`
-	WindowMaxRequests  int64              `yaml:"window_max_requests"`
-	MaxConcurrency     int64              `yaml:"max_concurrency"`
-	IPWhitelist        []string           `yaml:"ip_whitelist"`
-	HeaderWhitelist    []HeaderRule       `yaml:"header_whitelist"`
-	BlockedStatusCode  int                `yaml:"blocked_status_code"`
-	BlockedResponse    string             `yaml:"blocked_response"`
-	OverloadCPUThresh  float64            `yaml:"overload_cpu_threshold"`
-	OverloadMemThresh  float64            `yaml:"overload_mem_threshold"`
-	URLRules           map[string]int     `yaml:"url_rules"`
+	Algorithm         string         `yaml:"algorithm"`
+	GlobalMaxQPS      int            `yaml:"global_max_qps"`
+	TokenBucketRate   float64        `yaml:"token_bucket_rate"`
+	TokenBucketBurst  float64        `yaml:"token_bucket_burst"`
+	WindowSizeMs      int64          `yaml:"window_size_ms"`
+	WindowMaxRequests int64          `yaml:"window_max_requests"`
+	MaxConcurrency    int64          `yaml:"max_concurrency"`
+	IPWhitelist       []string       `yaml:"ip_whitelist"`
+	HeaderWhitelist   []HeaderRule   `yaml:"header_whitelist"`
+	BlockedStatusCode int            `yaml:"blocked_status_code"`
+	BlockedResponse   string         `yaml:"blocked_response"`
+	OverloadCPUThresh float64        `yaml:"overload_cpu_threshold"`
+	OverloadMemThresh float64        `yaml:"overload_mem_threshold"`
+	URLRules          map[string]int `yaml:"url_rules"`
 }
 
 // HeaderRule defines a header-based whitelist rule.
@@ -71,19 +71,19 @@ type CollectorConfig struct {
 
 // CacheConfig holds offline cache settings.
 type CacheConfig struct {
-	StorageType   string `yaml:"storage_type"`
-	MaxSizeMB     int    `yaml:"max_size_mb"`
-	ResendRate    int    `yaml:"resend_rate"`
-	ReconnInterval int   `yaml:"reconn_interval"`
+	StorageType    string `yaml:"storage_type"`
+	MaxSizeMB      int    `yaml:"max_size_mb"`
+	ResendRate     int    `yaml:"resend_rate"`
+	ReconnInterval int    `yaml:"reconn_interval"`
 }
 
 // GRPCConfig holds gRPC connection settings.
 type GRPCConfig struct {
-	ControllerAddr  string `yaml:"controller_addr"`
-	HeartbeatSec    int    `yaml:"heartbeat_sec"`
-	TimeoutSec      int    `yaml:"timeout_sec"`
-	MaxRetries      int    `yaml:"max_retries"`
-	AuthToken       string `yaml:"auth_token"`
+	ControllerAddr string `yaml:"controller_addr"`
+	HeartbeatSec   int    `yaml:"heartbeat_sec"`
+	TimeoutSec     int    `yaml:"timeout_sec"`
+	MaxRetries     int    `yaml:"max_retries"`
+	AuthToken      string `yaml:"auth_token"`
 }
 
 // APIConfig holds local HTTP API settings.
@@ -93,10 +93,10 @@ type APIConfig struct {
 
 // ControllerConfig represents the configuration for Nexus-Controller.
 type ControllerConfig struct {
-	General    ControllerGeneralConfig `yaml:"general"`
-	GRPC       ControllerGRPCConfig    `yaml:"grpc"`
-	Store      StoreConfig             `yaml:"store"`
-	API        ControllerAPIConfig     `yaml:"api"`
+	General ControllerGeneralConfig `yaml:"general"`
+	GRPC    ControllerGRPCConfig    `yaml:"grpc"`
+	Store   StoreConfig             `yaml:"store"`
+	API     ControllerAPIConfig     `yaml:"api"`
 }
 
 // ControllerGeneralConfig holds general controller settings.
@@ -114,12 +114,12 @@ type ControllerGRPCConfig struct {
 
 // StoreConfig holds SQLite storage settings.
 type StoreConfig struct {
-	DBPath          string `yaml:"db_path"`
-	BatchIntervalMs int    `yaml:"batch_interval_ms"`
-	BatchSize       int    `yaml:"batch_size"`
-	MetricsRetainDays int  `yaml:"metrics_retain_days"`
-	LogsRetainDays  int    `yaml:"logs_retain_days"`
-	CleanupHour     int    `yaml:"cleanup_hour"`
+	DBPath            string `yaml:"db_path"`
+	BatchIntervalMs   int    `yaml:"batch_interval_ms"`
+	BatchSize         int    `yaml:"batch_size"`
+	MetricsRetainDays int    `yaml:"metrics_retain_days"`
+	LogsRetainDays    int    `yaml:"logs_retain_days"`
+	CleanupHour       int    `yaml:"cleanup_hour"`
 }
 
 // ControllerAPIConfig holds controller HTTP API settings.
@@ -142,20 +142,20 @@ func DefaultEdgeConfig() *EdgeConfig {
 			MaxConcurrency:  1024,
 		},
 		Limiter: LimiterConfig{
-			Algorithm:          "token_bucket",
-			GlobalMaxQPS:       1000,
-			TokenBucketRate:    1000,
-			TokenBucketBurst:   2000,
-			WindowSizeMs:       1000,
-			WindowMaxRequests:  1000,
-			MaxConcurrency:     500,
-			IPWhitelist:        []string{},
-			HeaderWhitelist:    []HeaderRule{},
-			BlockedStatusCode:  429,
-			BlockedResponse:    `{"code":429,"msg":"系统繁忙，请稍后再试"}`,
-			OverloadCPUThresh:  80.0,
-			OverloadMemThresh:  85.0,
-			URLRules:           map[string]int{},
+			Algorithm:         "token_bucket",
+			GlobalMaxQPS:      1000,
+			TokenBucketRate:   1000,
+			TokenBucketBurst:  2000,
+			WindowSizeMs:      1000,
+			WindowMaxRequests: 1000,
+			MaxConcurrency:    500,
+			IPWhitelist:       []string{},
+			HeaderWhitelist:   []HeaderRule{},
+			BlockedStatusCode: 429,
+			BlockedResponse:   `{"code":429,"msg":"系统繁忙，请稍后再试"}`,
+			OverloadCPUThresh: 80.0,
+			OverloadMemThresh: 85.0,
+			URLRules:          map[string]int{},
 		},
 		Collect: CollectorConfig{
 			MetricsInterval: 10,

@@ -24,24 +24,24 @@ func (e *ErrorCode) Wrap(context string) *ErrorCode {
 // Range: 1000-1999 for Edge errors, 2000-2999 for Controller errors.
 var (
 	// Common errors (1000-1099)
-	OK                 = &ErrorCode{Code: 0, Message: "success"}
-	ErrInternal        = &ErrorCode{Code: 1000, Message: "internal error"}
-	ErrConfig          = &ErrorCode{Code: 1001, Message: "configuration error"}
-	ErrNotImplemented  = &ErrorCode{Code: 1002, Message: "not implemented"}
-	ErrTimeout         = &ErrorCode{Code: 1003, Message: "operation timeout"}
-	ErrInvalidParam    = &ErrorCode{Code: 1004, Message: "invalid parameter"}
+	OK                = &ErrorCode{Code: 0, Message: "success"}
+	ErrInternal       = &ErrorCode{Code: 1000, Message: "internal error"}
+	ErrConfig         = &ErrorCode{Code: 1001, Message: "configuration error"}
+	ErrNotImplemented = &ErrorCode{Code: 1002, Message: "not implemented"}
+	ErrTimeout        = &ErrorCode{Code: 1003, Message: "operation timeout"}
+	ErrInvalidParam   = &ErrorCode{Code: 1004, Message: "invalid parameter"}
 
 	// Edge errors (1100-1199)
-	ErrProxyStart      = &ErrorCode{Code: 1100, Message: "proxy start failed"}
-	ErrProxyListen     = &ErrorCode{Code: 1101, Message: "proxy listen failed"}
-	ErrRateLimit       = &ErrorCode{Code: 1102, Message: "rate limit exceeded"}
-	ErrCollectorStart  = &ErrorCode{Code: 1103, Message: "collector start failed"}
-	ErrCacheWrite      = &ErrorCode{Code: 1104, Message: "cache write failed"}
-	ErrCacheRead       = &ErrorCode{Code: 1105, Message: "cache read failed"}
-	ErrCacheFull       = &ErrorCode{Code: 1106, Message: "cache storage full"}
-	ErrNetworkDown     = &ErrorCode{Code: 1107, Message: "network unavailable"}
-	ErrGRPCConn        = &ErrorCode{Code: 1108, Message: "gRPC connection failed"}
-	ErrHeartbeat       = &ErrorCode{Code: 1109, Message: "heartbeat failed"}
+	ErrProxyStart     = &ErrorCode{Code: 1100, Message: "proxy start failed"}
+	ErrProxyListen    = &ErrorCode{Code: 1101, Message: "proxy listen failed"}
+	ErrRateLimit      = &ErrorCode{Code: 1102, Message: "rate limit exceeded"}
+	ErrCollectorStart = &ErrorCode{Code: 1103, Message: "collector start failed"}
+	ErrCacheWrite     = &ErrorCode{Code: 1104, Message: "cache write failed"}
+	ErrCacheRead      = &ErrorCode{Code: 1105, Message: "cache read failed"}
+	ErrCacheFull      = &ErrorCode{Code: 1106, Message: "cache storage full"}
+	ErrNetworkDown    = &ErrorCode{Code: 1107, Message: "network unavailable"}
+	ErrGRPCConn       = &ErrorCode{Code: 1108, Message: "gRPC connection failed"}
+	ErrHeartbeat      = &ErrorCode{Code: 1109, Message: "heartbeat failed"}
 
 	// Controller errors (2000-2099)
 	ErrNodeNotFound    = &ErrorCode{Code: 2000, Message: "node not found"}
